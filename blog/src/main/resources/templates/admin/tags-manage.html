@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="/admin/_fragments-admin :: head(~{::title})">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>标签管理</title>
+</head>
+
+<body>
+
+<!--导航-->
+<nav th:replace="/admin/_fragments-admin :: nav(4)" ></nav>
+
+<!--中间元素-->
+<div id="main" class="m-margin-top-big m-padded-tb-large">
+  <div class="ui container">
+
+    <div class="ui success message" th:unless="${#strings.isEmpty(successMessage)}">
+      <i class="close icon"></i>
+      <div class="" th:text="${successMessage}"></div>
+    </div>
+    <div class="ui negative message" th:unless="${#strings.isEmpty(errorMessage)}">
+      <i class="close icon"></i>
+      <div class="" th:text="${errorMessage}"></div>
+    </div>
+
+    <form action="#" method="post" class="ui secondary segment form" >
+      <div class="inline fields">
+        <div class="field">
+          <input type="text" name="title" placeholder="标签类型">
+        </div>
+
+        <div class="field">
+          <div class="ui teal basic button"> <i class="search icon"></i>搜索</div>
+        </div>
+      </div>
+    </form>
+
+    <div class="ui segments">
+      <div class="ui segment right aligned">
+        <a href="#" class="ui blue basic button" th:href="@{/admin/tags/input}">新增</a>
+      </div>
+
+      <table class="ui center aligned celled table segment" style="width: 100%">
+        <thead>
+        <tr>
+          <th></th>
+          <th>标签类型</th>
+          <th>创建时间</th>
+          <th>修改时间</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="tag, iterStat : ${tags}">
+          <td th:text="${iterStat.count}">1</td>
+          <td th:text="${tag.name}">标签1</td>
+          <td th:text="${#dates.format(tag.createTime, 'yyyy-MM-dd HH:mm:ss')}">2023-5-28</td>
+          <td th:text="${#dates.format(tag.updateTime, 'yyyy-MM-dd HH:mm:ss')}">2023-5-28</td>
+          <td>
+            <a href="#" th:href="@{/admin/tags/{id}/input(id=${tag.id})}" class="ui mini blue button">编辑</a>
+            <a href="#" th:href="@{/admin/tags/{id}/delete(id=${tag.id})}"  onclick="return confirm('确定要删除该标签吗？')" class="ui mini red button">删除</a>
+          </td>
+        </tr>
+
+        </tbody>
+
+        <tfoot>
+        <tr>
+          <th colspan="5">
+            <div class="ui right floated pagination menu">
+
+              <!--                            上一页-->
+              <a class="icon item" th:href="@{/admin/tags(pageNum= ${pageInfo.getCurrent() - 1})}" th:unless="${!pageInfo.hasPrevious()}">
+                <i class="left chevron icon"></i>
+              </a>
+              <!--                            页码-->
+              <div th:each="pageNumber : ${pageNumbers}" style="padding: 0 !important;" class="ui pagination menu">
+                <a class="item" th:classappend= "${pageInfo.getCurrent() == pageNumber ? 'active' : ''}" th:href="@{/admin/tags(pageNum= ${pageNumber})}" th:text="${pageNumber}"></a>
+              </div>
+              <!--                            下一页-->
+              <a class="icon item" th:href="@{/admin/tags(pageNum= ${pageInfo.getCurrent() + 1})}" th:unless="${!pageInfo.hasNext()}">
+                <i class="right chevron icon"></i>
+              </a>
+
+              <!--                            总页-->
+              <div class="icon item">
+                共<div th:text="${pageInfo.getPages()}"></div>页
+              </div>
+            </div>
+          </th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<!--置顶图标-->
+<div th:replace="/admin/_fragments-admin :: toolbar"></div>
+
+<!--底部footer-->
+<footer th:replace="/admin/_fragments-admin :: footer"></footer>
+
+<!--引入js-->
+<th:block th:replace="/admin/_fragments-admin :: script"></th:block>
+</body>
+<script>
+
+  $('#menu-toggle').click(function (){
+    $(".m-item").toggleClass("m-mobile-hide") // 有这个"m-mobile-hide"类就加上这个类否则就删去这个类
+  });
+  $(".ui.dropdown").dropdown({
+    on: 'hover'
+  });
+  //消息提示关闭初始化
+  $('.message .close')
+    .on('click', function () {
+      $(this)
+        .closest('.message')
+        .transition('fade');
+    });
+
+</script>
+
+</html>

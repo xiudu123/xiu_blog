@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>标签管理</title>
+  <link rel="stylesheet" href="../../static/lib/Semantic-UI-2.5.0/dist/semantic.min.css" type="text/css">
+  <link rel="stylesheet" href="../../static/css/me.css" type="text/css">
+</head>
+
+<body>
+
+<!--导航-->
+<nav id="my-nav" style="opacity: 1; !important;">
+  <div class="ui container">
+    <div class="ui inverted secondary menu stackable">
+      <h1 class="ui blue header item">后台管理</h1>
+      <a href="#" class="item m-item m-mobile-hide"><i class="folder open outline icon"></i>文章管理</a>
+      <a href="#" class="item m-item m-mobile-hide"><i class="file alternate outline  icon"></i>文章发布</a>
+      <a href="#" class="item m-item m-mobile-hide"><i class="clone outline icon"></i>分类管理</a>
+      <a href="#" class="item m-item m-mobile-hide active"><i class="clone outline icon"></i>标签管理</a>
+      <div class="right m-item m-mobile-hide menu">
+        <div class="item">
+          <div class="ui dropdown item">
+            <div class="text">
+              <img class="ui avatar image" src="../../static/img/xiu.jpg" alt="">
+              锈渎
+            </div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a href="#" class="item">注销</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button id="menu-toggle" class="ui menu black button icon m-right-top m-mobile-show">
+    <i class="sidebar icon"></i>
+  </button>
+</nav>
+
+<!--中间元素-->
+<div id="main" class="m-margin-top-big m-padded-tb-large">
+  <div class="ui container">
+
+    <form action="#" method="post" class="ui segment form" >
+      <div class="inline fields">
+        <div class="field">
+          <input type="text" name="title" placeholder="标签类型">
+        </div>
+
+        <div class="field">
+          <button class="ui teal basic button"> <i class="search icon"></i>搜索</button>
+        </div>
+      </div>
+    </form>
+    <div class="ui segments">
+      <div class="ui segment right aligned">
+        <a href="#" id="add_button" class="ui blue basic button">新增</a>
+        <div class="ui modal">
+          <i class="close icon"></i>
+          <div class="header">
+            增加标签
+          </div>
+          <div class="image content">
+            <div class="description">
+              <div class="field">
+                <div class="ui left labeled input">
+                  <label class="ui teal basic label">标签</label>
+                  <input type="text" name="indexPicture" placeholder="请输入标签名称">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="ui button">确认</div>
+            <div class="ui button">取消</div>
+          </div>
+        </div>
+      </div>
+
+      <table class="ui center aligned celled table segment" style="width: 100%">
+        <thead>
+        <tr>
+          <th></th>
+          <th>标签类型</th>
+          <th>创建时间</th>
+          <th>更新时间</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td>1</td>
+          <td>标签1</td>
+          <td>2023-5-28</td>
+          <td>2023-5-28</td>
+          <td>
+            <a href="#" class="ui mini blue button">编辑</a>
+            <a href="#" class="ui mini red button">删除</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>标签2</td>
+          <td>2023-5-28</td>
+          <td>2023-5-28</td>
+          <td>
+            <a href="#" class="ui mini blue button">编辑</a>
+            <a href="#" class="ui mini red button">删除</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td>标签3</td>
+          <td>2023-5-28</td>
+          <td>2023-5-28</td>
+          <td>
+            <a href="#" class="ui mini blue button">编辑</a>
+            <a href="#" class="ui mini red button">删除</a>
+          </td>
+        </tr>
+        </tbody>
+
+        <tfoot>
+        <tr>
+          <th colspan="5">
+            <div class="ui right floated pagination menu">
+              <a class="icon item">
+                <i class="left chevron icon"></i>
+              </a>
+              <a class="item">1</a>
+              <a class="item">2</a>
+              <a class="item">3</a>
+              <a class="item">4</a>
+              <a class="icon item">
+                <i class="right chevron icon"></i>
+              </a>
+            </div>
+          </th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<!--置顶图标-->
+<div id="toolbar" class="m-padded-tb-large m-fixed m-right-bottom toTop-button">
+  <div class="ui teal icon button"><i class="chevron up icon"></i> </div>
+</div>
+<!--底部footer-->
+<footer class="ui inverted vertical segment  m-padded-tb m-opacity m-margin-top-big">
+  <div class="ui center aligned container">
+    <div class="ui inverted divided stackable grid">
+      <div class="five wide column">
+        <h4 class="ui inverted header m-opacity-small">联系我</h4>
+        <div class="ui inverted link list">
+          <div class="item">QQ:XXXXXXXXX</div>
+        </div>
+      </div>
+      <div class="six wide column">
+        <h4 class="ui inverted header m-opacity-small">最新博客</h4>
+        <div class="ui inverted link list">
+          <a href="#" class="item">这是一篇博客</a>
+          <a href="#" class="item">这是一篇博客</a>
+          <a href="#" class="item">这是一篇博客</a>
+        </div>
+      </div>
+      <div class="five wide column">
+        <h4 class="ui inverted header m-opacity-small">小栈信息</h4>
+        <div class="ui inverted link list">
+          <div class="item">
+            文章总数: <div class="ui orange header m-inline-block">&nbsp;200&nbsp;</div> 篇
+          </div>
+          <div class="item">
+            评论总数: <div class="ui orange header m-inline-block">&nbsp;200&nbsp;</div> 条
+          </div>
+          <div class="item">
+            留言总数: <div class="ui orange header m-inline-block">&nbsp;200&nbsp;</div> 条
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui inverted section divider"></div>
+    <div class="ui orange header m-text-thin m-text-spaced m-opacity-small">
+      我的小栈已营业:
+      <span id="run_time"></span>
+    </div>
+
+  </div>
+</footer>
+
+<script src="../../static/lib/jquery-3.0.0/jquery-3.0.0.min.js"></script>
+<script src="../../static/lib/Semantic-UI-2.5.0/dist/semantic.min.js"></script>
+<script src="../../static/lib/jquery-scrollTo/jquery.scrollTo.min.js"></script>
+<script src="../../static/js/footer_time.js"></script>
+</body>
+<script>
+
+  $('#menu-toggle').click(function (){
+    $(".m-item").toggleClass("m-mobile-hide") // 有这个"m-mobile-hide"类就加上这个类否则就删去这个类
+  });
+  $(".ui.dropdown").dropdown({
+    on: 'hover'
+  });
+
+  $('#add_button').click(function (){
+    $('.ui.modal').modal('show');
+  })
+
+
+</script>
+
+</html>

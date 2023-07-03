@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="/admin/_fragments-admin :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客管理</title>
+</head>
+
+<body>
+
+    <!--导航-->
+    <nav th:replace="/admin/_fragments-admin :: nav(1)" ></nav>
+
+    <!--中间元素-->
+    <div id="main" class="m-margin-top-big m-padded-tb-large">
+        <div class="ui container">
+            <div class="ui secondary segment form" >
+                <input type="hidden" name="page">
+                <div class="inline fields">
+<!--                    标题-->
+                    <div class="field">
+<!--                        <label>-->
+                            <input type="text" name="title" placeholder="标题">
+<!--                        </label>-->
+                    </div>
+<!--                    分类-->
+                    <div class="field">
+<!--                        <label>-->
+                        <select class="ui search dropdown" name="typeId">
+                            <option value="-1">选择分类</option>
+                            <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}">只</option>
+                        </select>
+<!--                        </label>-->
+                    </div>
+<!--                    置顶-->
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" id="top" name="top">
+                            <label for="top" style="cursor:pointer;">置顶</label>
+                        </div>
+                    </div>
+<!--                    发布-->
+                    <div class="field">
+
+                        <div class="ui checkbox">
+                            <input type="checkbox" id="published" name="published">
+                            <label for="published" style="cursor:pointer;">未发布</label>
+                        </div>
+                    </div>
+<!--                    搜索-->
+                    <div class="field">
+                        <button id="search-btn" type="button" class="ui teal basic button"> <i class="search icon"></i>搜索</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui success message" th:unless="${#strings.isEmpty(successMessage)}">
+                <i class="close icon"></i>
+                <div class="" th:text="${successMessage}"></div>
+            </div>
+            <div class="ui negative message" th:unless="${#strings.isEmpty(errorMessage)}">
+                <i class="close icon"></i>
+                <div class="" th:text="${errorMessage}"></div>
+            </div>
+
+            <div class="ui segments">
+                <div class="ui segment right aligned">
+                    <a href="#" th:href="@{/admin/blogs/input}" class="ui blue basic button">新增</a>
+                </div>
+
+                <div id="table-container">
+                    <table th:fragment="blogList" class="ui center aligned table segment" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>标题</th>
+                            <th>类型</th>
+                            <th>置顶</th>
+                            <th>是否发布</th>
+                            <th>开启评论</th>
+                            <th>创建时间</th>
+                            <th>更新时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="blog, iterStat : ${blogs}">
+                            <td th:text="${iterStat.count}">1</td>
+                            <td th:text="${blog.title}">这是一个标题</td>
+                            <td th:text="${blog.typeName}">codeforces</td>
+                            <td th:text="${blog.top} ? '是' : '否' ">是</td>
+                            <td th:text="${blog.published} ? '发布' : '未发布' ">发布</td>
+                            <td th:text="${blog.comment} ? '开启' : '未开启' ">发布</td>
+                            <td th:text="${#dates.format(blog.createTime, 'yyyy-MM-dd HH:mm:ss')}">2023-5-28</td>
+                            <td th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd HH:mm:ss')}">2023-5-28</td>
+                            <td>
+                                <a href="#" th:href="@{/admin/blogs/{id}/update(id=${blog.id})}" class="ui mini blue button">编辑</a>
+                                <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}"  onclick="return confirm('确定要删除该博客吗？')" class="ui mini red button">删除</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                        <tfoot>
+                        <tr>
+                            <th colspan="9">
+                                <div class="ui right floated pagination menu">
+
+                                    <!--                            上一页-->
+                                    <a class="icon item" onclick="page(this)" th:href="@{/admin/blogs/manage(pageNum= ${pageInfo.getCurrent() - 1})}" th:unless="${!pageInfo.hasPrevious()}">
+                                        <i class="left chevron icon"></i>
+                                    </a>
+                                    <!--                            页码-->
+                                    <div th:each="pageNumber : ${pageNumbers}" style="padding: 0 !important;" class="ui pagination menu">
+                                        <a class="item" th:classappend= "${pageInfo.getCurrent() == pageNumber ? 'active' : ''}" onclick="page(this)" th:href="@{/admin/blogs/manage(pageNum= ${pageNumber})}" th:text="${pageNumber}"></a>
+                                    </div>
+                                    <!--                            下一页-->
+                                    <a class="icon item" onclick="page(this)" th:href="@{/admin/blogs/manage(pageNum= ${pageInfo.getCurrent() + 1})}" th:unless="${!pageInfo.hasNext()}">
+                                        <i class="right chevron icon"></i>
+                                    </a>
+
+                                    <!--                            总页-->
+                                    <div class="icon item">
+                                        共<div th:text="${pageInfo.getPages()}"></div>页
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--置顶图标-->
+    <div th:replace="/admin/_fragments-admin :: toolbar"></div>
+
+    <!--底部footer-->
+    <footer th:replace="/admin/_fragments-admin :: footer"></footer>
+
+    <!--引入js-->
+    <th:block th:replace="/admin/_fragments-admin :: script"></th:block>
+</body>
+<script>
+
+$('#menu-toggle').click(function (){
+    $(".m-item").toggleClass("m-mobile-hide") // 有这个"m-mobile-hide"类就加上这个类否则就删去这个类
+});
+$(".ui.dropdown").dropdown({
+    on: 'hover'
+});
+
+//消息提示关闭初始化
+$('.message .close')
+    .on('click', function () {
+        $(this)
+            .closest('.message')
+            .transition('fade');
+    });
+
+
+function page(obj) {
+    $("[name='page']").val($(obj).data("page"));
+    loadData();
+}
+
+$('#search-btn').click(function (){
+    $("[name='page']").val(0);
+   loadData();
+});
+
+function loadData() {
+    $("#table-container").load(/*[[@{/admin/blogs/manage/search}]]*/ "/admin/blogs/manage/search",{
+        title : $("[name='title']").val(),
+        typeId : $("[name='typeId']").val(),
+        top : ($("[name='top']").is(':checked')),
+        published : !($("[name='published']").is(':checked'))
+        });
+    console.log($('#top').is(':checked'));
+    console.log($('#published').is(':checked'));
+}
+
+</script>
+
+</html>

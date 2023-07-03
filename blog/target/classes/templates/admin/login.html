@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="/admin/_fragments-admin :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+
+<body style="display:flex;align-items:center;justify-content:center;">
+
+    <div class="m-container-small m-padded-tb-massive " style="max-width: 30em !important;">
+      <div class="ui container">
+
+        <div class="ui middle aligned center aligned grid">
+          <div class="column">
+            <h2 class="ui black image header">
+                后台登录
+            </h2>
+            <form class="ui large form" method="post" action="#" th:action="@{/admin/login}">
+              <div class="ui segment">
+                <div class="field">
+                  <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="username" placeholder="用户名">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input type="password" name="password" placeholder="密码">
+                  </div>
+                </div>
+                <button class="ui fluid large teal submit button">登   录</button>
+              </div>
+
+              <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></div>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--引入js-->
+    <th:block th:replace="/admin/_fragments-admin :: script"></th:block>
+<script>
+</script>
+</body>
+</html>

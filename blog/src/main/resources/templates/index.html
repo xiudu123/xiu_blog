@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+</head>
+
+<body>
+    <!--导航-->
+    <nav th:replace="_fragments :: nav(1)"></nav>
+    <!--顶部图片-->
+    <div id="m-top_index" style="min-height: 65vh" th:unless="${pageInfo.getCurrent()} != 1" >
+        <img src="../static/img/lufei.jpg" alt="" class="ui image m-top-img" th:src="@{/img/lufei.jpg}">
+        <div class="m-class_coverIndex m-center" >
+            <div class="m-margin-top-large" align="center">
+                <img src="../static/img/xiu.jpg" alt="" class="ui circular small image" th:src="@{/img/xiu.jpg}">
+            </div>
+            <div class="m-font-size-title" style="color: black">锈渎</div>
+            <div>
+                <div class="My_qq ui circular icon button"><i class="qq icon"></i></div>
+                <a href="https://github.com/xiudu123" target="_blank" class="My_github ui circular icon button" data-content="点击跳转github" data-position="bottom center"><i class="github icon"></i></a>
+            </div>
+            <div class="My_qq_qr ui flowing popup top left transition hidden">
+                <img src="../static/img/qrcode.png" alt="" class="ui rounded image" th:src="@{/img/qrcode.png}">
+            </div>
+            <div class="m-font-size-text m-gradient-color m-margin-top-large">
+                须知少日拏云志 <br>
+                曾许人间第一流
+            </div>
+
+            <div class="ui container m-margin-top-big" style="margin-bottom: 0; padding-bottom: 0">
+                <a href="#main-index" class="ui circular icon button m-opacity-small"><i class="home icon"></i> 首页</a>
+                <a href="#" class="ui circular icon button m-opacity-small"><i class="clone outline icon"></i> 分类</a>
+                <a href="/archives" class="ui circular icon button m-opacity-small"><i class="clock outline  icon"></i> 时间轴</a>
+                <a href="/about" class="ui circular icon button m-opacity-small"><i class="info icon"></i> 关于我</a>
+            </div>
+            <div id="waypoint" style="margin-top: 0;padding-top: 0"></div>
+        </div>
+    </div>
+
+    <div  id="main-index"></div>
+
+    <!--中间元素-->
+    <div id="main" class="m-margin-top-big">
+        <div class="ui middle aligned container stacked grid">
+            <div class="ui vertical segment">
+                <!--博客-->
+                <div class="ui padded segment m-opacity" th:each="blog : ${blogs}">
+
+                    <div class="ui mobile reversed stackable grid  m-margin-top-large">
+                        <!--博文信息-->
+                        <div class="eleven wide column">
+                            <h3 class="ui header" >
+                                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black m-title-font" th:text="${blog.title}">大圣，此去欲何?</a>
+                                <div class="ui mini blue basic button" style="margin-left: 10px" th:unless="${blog.top} == false">置顶</div>
+                            </h3>
+                            <p class="m-text m-margin-top-max" style="min-width: 50vw;" th:text="${blog.overview == null} ? '作者很懒，没有写该博客描述' : ${blog.overview}">戴上金箍，没法爱你；放下金箍，没法保护你。我知道上天不会给我第二次机会，曾经我们说好的永远，原来也仅仅只有，十二画，而已。“大圣，此去欲何?”“踏南天，碎凌霄。”“若一去不回……”“便一去不回” 其实很多时候，我们都是有机会的，最后真正放弃的，是我们自己。......</p>
+                            <div class="ui m-margin-top-max stackable grid">
+                                <div class="eleven wide column">
+                                    <div class="ui mini horizontal link list">
+                                        <div class="item">
+                                            <img src="../static/img/xiu.jpg" alt="" class="ui avatar image" th:src="@{/img/xiu.jpg}">
+                                            <div class="content"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="header" th:text="${blog.userName}" >xiu du</a></div>
+                                        </div>
+                                        <div class="item">
+                                            <i class="calendar icon"></i><span th:text="${#dates.format(blog.createTime, 'yyyy-MM-dd HH:mm:ss')}">2023-05-26</span>
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon"></i> <span th:text="${blog.views}">2222</span>
+                                        </div>
+<!--                                        <div class="item">-->
+<!--                                            <i class="comment outline icon"></i> <span>2222</span>-->
+<!--                                        </div>-->
+                                    </div>
+                                </div>
+                                <div class="right aligned five wide column">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin" th:text="${blog.typeName}">好文</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--博文图片-->
+                        <div class="five wide column">
+                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                <img src="../static/img/Hancock.jpg" alt="" class="ui rounded image" th:src="${blog.firstPicture}" style="width: 400px; height: 200px">
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 分页-->
+                <div class="ui bottom segment m-opacity stackable grid">
+                    <div class="three wide column center aligned">
+                        <a class="ui teal basic button item" th:href="@{/index(pageNum= ${prePage})}">上一页</a>
+                    </div>
+
+                    <div class="ten wide column center aligned" style="margin: auto">
+                        <p> <span th:text="${pageInfo.getCurrent()}"> 1 </span> / <span th:text="${pageInfo.getPages()}"> 1 </span> </p>
+                    </div>
+                    <div class="three wide column center aligned">
+                        <a class="ui teal basic button item" th:href="@{/index(pageNum= ${nextPage})}">下一页</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--置顶图标-->
+    <div th:replace="_fragments :: toolbar(0)"></div>
+
+    <!--底部footer-->
+    <footer th:replace="_fragments :: footer"></footer>
+
+    <!--引入js-->
+    <th:block th:replace="_fragments :: script"></th:block>
+
+</body>
+<script>
+    // 显示QQ
+    $('.My_qq').popup({
+        popup : $('.My_qq_qr'),
+        position: 'bottom center'
+    });
+    // 显示github
+    $('.My_github').popup();
+
+    window.onload = function() {
+        var nav = document.getElementById("my-nav");
+        var top = document.getElementById("m-top_index");
+
+        if(!top) {
+            $('#my-nav').show(500);
+            $('#toolbar').show(500);
+        }
+
+        // if (top) {
+        //     nav.style.display = "none";
+        // } else {
+        //     nav.style.display = "block";
+        // }
+    };
+
+    // -------------------------------------导航栏显示----------------------
+    $('#menu-toggle').click(function (){
+        $(".m-item").toggleClass("m-mobile-hide") // 有这个"m-mobile-hide"类就加上这个类否则就删去这个类
+    });
+    const waypoint = new Waypoint({
+        element: document.getElementById('waypoint'),
+        handler: function (direction) {
+            if (direction === 'down') {
+                $('#my-nav').show(500);
+                $('#toolbar').show(500);
+            } else {
+                $('#my-nav').hide(500);
+                $('#toolbar').hide(500);
+            }
+            // console.log('Scrolled to waypoint!  ' + direction);
+        }
+    });
+    // --------------------------------------------------------------------
+</script>
+
+</html>

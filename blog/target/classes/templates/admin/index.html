@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="/admin/_fragments-admin :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录成功</title>
+</head>
+
+<body>
+
+    <!--导航-->
+    <nav th:replace="/admin/_fragments-admin :: nav(0)" ></nav>
+
+    <!--中间元素-->
+    <div id="main" class="m-margin-top-big m-padded-tb-large">
+        <div class="ui container">
+            <div class="ui success large message">
+                <h2>登录成功</h2>
+            </div>
+            <img src="../../static/img/Ace2.jpg" alt="" class="ui rounded bordered fluid image" style="height: 400px" th:src="@{/img/Ace2.jpg}">
+        </div>
+    </div>
+
+
+    <!--底部footer-->
+    <footer th:replace="/admin/_fragments-admin :: footer"></footer>
+
+    <!--引入js-->
+    <th:block th:replace="/admin/_fragments-admin :: script"></th:block>
+</body>
+<script>
+
+$('#menu-toggle').click(function (){
+    $(".m-item").toggleClass("m-mobile-hide") // 有这个"m-mobile-hide"类就加上这个类否则就删去这个类
+});
+$(".ui.dropdown").dropdown({
+    on: 'hover'
+});
+</script>
+
+</html>

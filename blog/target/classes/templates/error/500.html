@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>500</title>
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="_fragments :: nav(0)" ></nav>
+<div id="main" class="m-margin-top-big">
+    <div class="ui m-opacity m-margin-top-max container">
+        <img src="../../static/img/effect.gif" alt="" class="ui rounded bordered fluid image" th:src="@{/img/effect.gif}">
+    </div>
+    <div class="m-margin-top-max" align="center">
+        <a href="#" th:href="@{/}">
+            <button type="button" class="ui teal button m-mobile-wide"><i class="home icon"></i> 返回首页</button>
+        </a>
+    </div>
+</div>
+
+
+<!--底部footer-->
+<footer th:replace="_fragments :: footer"></footer>
+
+<!--引入js-->
+<th:block th:replace="_fragments :: script"></th:block>
+</body>
+</html>

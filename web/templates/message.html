@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+    <link rel="stylesheet" href="../static/lib/Semantic-UI-2.5.0/dist/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/me.css" type="text/css">
+</head>
+
+<body>
+
+    <!--导航-->
+    <nav id="my-nav">
+    <div class="ui container">
+        <div class="ui inverted secondary menu stackable">
+            <h1 class="ui blue header item">锈渎</h1>
+            <a href="#" class="item m-item m-mobile-hide"><i class="home icon"></i>首页</a>
+            <a href="#" class="item m-item m-mobile-hide"><i class="clone outline icon"></i>分类</a>
+            <a href="#" class="item m-item m-mobile-hide"><i class="clock outline icon"></i>时间轴</a>
+            <a href="#" class="item m-item m-mobile-hide active"><i class="edit outline icon"></i>留言板</a>
+            <a href="#" class="item m-item m-mobile-hide"><i class="info icon"></i>关于我</a>
+
+            <div class="right item m-item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="搜索..." id="search">
+                    <label for="search">
+                        <i class="search link icon"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="menu-toggle" class="ui menu black button icon m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </button>
+</nav>
+
+    <div class="m-bg-type_outer" style="width: 100%; height: 40%">
+        <img src="../static/img/messagebg.jpg" alt="" class="ui m-bg image">
+            <div class="ui container" style="position: relative ;top: -540px;">
+                <div class="m-font-size-title m-right-bottom" align="center" style="font-family:'STXingkai',serif;" >留言板</div>
+                <div class="m-font-size-text-init-title m-margin-top" align="center">欢迎大家来评论发言</div>
+            </div>
+    </div>
+
+    <!--中间元素-->
+    <div id="main" class="m-margin-top-big">
+        <div class="ui container">
+            <div class="ui bottom attached segment">
+                <div class="ui form">
+                    <div class="field">
+                        <label>
+                            <textarea name="content" placeholder="请输入评论..."></textarea>
+                        </label>
+                    </div>
+                    <div class="fields">
+                        <div class="field m-mobile-wide m-margin-button-small">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="nickname" placeholder="姓名">
+                            </div>
+
+                        </div>
+                        <div class="field m-mobile-wide m-margin-button-small">
+                            <div class="ui left icon input">
+                                <i class="mail icon"></i>
+                                <input type="email" name="email" placeholder="邮箱">
+                            </div>
+                        </div>
+                        <div class="field m-mobile-wide m-margin-button-small">
+                            <button class="ui blue button m-mobile-wide"><i class="edit icon"></i> 发布</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui segment">
+                    <div class="ui threaded comments">
+                        <h3 class="ui dividing header">Comments</h3>
+                        <div class="comment">
+                            <a class="avatar">
+                                <img src="../static/img/xiu.jpg" alt="">
+                            </a>
+                            <div class="content">
+                                <a class="author">Matt</a>
+                                <div class="metadata">
+                                    <span class="date">Today at 5:42PM</span>
+                                </div>
+                                <div class="text">
+                                    How artistic!
+                                </div>
+                                <div class="actions">
+                                    <a class="reply">回复</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <a class="avatar">
+                                <img src="../static/img/xiu.jpg" alt="">
+                            </a>
+                            <div class="content">
+                                <a class="author">Elliot Fu</a>
+                                <div class="metadata">
+                                    <span class="date">Yesterday at 12:30AM</span>
+                                </div>
+                                <div class="text">
+                                    <p>This has been very useful for my research. Thanks as well!</p>
+                                </div>
+                                <div class="actions">
+                                    <a class="reply">回复</a>
+                                </div>
+                            </div>
+                            <div class="comments">
+                                <div class="comment">
+                                    <a class="avatar">
+                                        <img src="../static/img/xiu.jpg" alt="">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">Jenny Hess</a>
+                                        <div class="metadata">
+                                            <span class="date">Just now</span>
+                                        </div>
+                                        <div class="text">
+                                            Elliot you are always so right :)
+                                        </div>
+                                        <div class="actions">
+                                            <a class="reply">回复</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <a class="avatar">
+                                <img src="../static/img/xiu.jpg" alt="">
+                            </a>
+                            <div class="content">
+                                <a class="author">Joe Henderson</a>
+                                <div class="metadata">
+                                    <span class="date">5 days ago</span>
+                                </div>
+                                <div class="text">
+                                    Dude, this is awesome. Thanks so much
+                                </div>
+                                <div class="actions">
+                                    <a class="reply">回复</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 分页-->
+                <div class="ui stackable grid">
+                    <div class="three wide column left aligned">
+                        <a class="ui teal basic button item">上一页</a>
+                    </div>
+
+                    <div class="ten wide column center aligned" style="margin: auto">
+                        <p> <span> 1 </span> / <span> 1 </span> </p>
+                    </div>
+                    <div class="three wide column right aligned">
+                        <a class="ui teal basic button item" >下一页</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--置顶图标-->
+    <div id="toolbar" class="m-padded-tb-large m-fixed m-right-bottom toTop-button">
+        <div class="ui teal icon button"><i class="chevron up icon"></i> </div>
+    </div>
+    <!--底部footer-->
+    <footer class="ui inverted vertical segment  m-padded-tb m-opacity m-margin-top-big">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="five wide column">
+                    <h4 class="ui inverted header m-opacity-small">联系我</h4>
+                    <div class="ui inverted link list">
+                        <div class="item">QQ:XXXXXXXXX</div>
+                    </div>
+                </div>
+                <div class="six wide column">
+                    <h4 class="ui inverted header m-opacity-small">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">这是一篇博客</a>
+                        <a href="#" class="item">这是一篇博客</a>
+                        <a href="#" class="item">这是一篇博客</a>
+                    </div>
+                </div>
+                <div class="five wide column">
+                    <h4 class="ui inverted header m-opacity-small">小栈信息</h4>
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            文章总数: <div class="ui orange header m-inline-block">&nbsp;200&nbsp;</div> 篇
+                        </div>
+                        <div class="item">
+                            评论总数: <div class="ui orange header m-inline-block">&nbsp;200&nbsp;</div> 条
+                        </div>
+                        <div class="item">
+                            留言总数: <div class="ui orange header m-inline-block">&nbsp;200&nbsp;</div> 条
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui inverted section divider"></div>
+            <div class="ui orange header m-text-thin m-text-spaced m-opacity-small">
+                我的小栈已营业:
+                <span id="run_time"></span>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="../static/lib/jquery-3.0.0/jquery-3.0.0.min.js"></script>
+    <script src="../static/lib/Semantic-UI-2.5.0/dist/semantic.min.js"></script>
+    <script src="../static/lib/jquery-scrollTo/jquery.scrollTo.min.js"></script>
+    <script src="../static/js/footer_time.js"></script>
+</body>
+<script>
+
+$('#menu-toggle').click(function (){
+    $(".m-item").toggleClass("m-mobile-hide") // 有这个"m-mobile-hide"类就加上这个类否则就删去这个类
+});
+
+</script>
+
+</html>

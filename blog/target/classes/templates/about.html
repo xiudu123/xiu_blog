@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我</title>
+</head>
+
+<body>
+
+    <!--导航-->
+    <nav th:replace="_fragments :: nav(6)" ></nav>
+
+    <div class="m-bg-type_outer" style="width: 100%; height: 40%">
+        <img src="../static/img/Ace.jpg" alt="" class="ui m-bg image" th:src="@{/img/Ace.jpg}">
+        <div class="ui container" style="position: relative ;top: -580px;">
+            <div class="m-font-size-title m-right-bottom" align="center" style="font-family:'STXingkai',serif;" >关于我</div>
+            <div class="m-font-size-text-init-title m-margin-top" align="center">我们绝对要过一个无悔的人生!<br>总有一天,我们要踏上这片海洋,按照自己的梦想去闯荡!<br>我们要过上最自由的人生!<br>——艾斯</div>
+        </div>
+    </div>
+
+    <!--中间元素-->
+    <div id="main" class="m-margin-top-large">
+        <div class="ui container segment m-opacity m-center">
+            <div class="m-margin-top-large" align="center">
+                <img src="../static/img/xiu.jpg" alt="" class="ui circular small image" th:src="@{/img/xiu.jpg}">
+            </div>
+            <div class="m-font-size-title" style="color: black">锈渎</div>
+            <div>
+                <div class="My_qq ui circular icon button"><i class="qq icon"></i></div>
+                <a href="https://github.com/xiudu123" target="_blank" class="My_github ui circular icon button" data-content="点击跳转github" data-position="bottom center"><i class="github icon"></i></a>
+            </div>
+            <div class="My_qq_qr ui flowing popup top left transition hidden">
+                <img src="../static/img/qrcode.png" alt="" class="ui rounded image">
+            </div>
+            <hr style="width: 30%">
+            <br>
+            <div style="min-height: 300px;">
+                <p>一位对编程感兴趣的菜狗 acmer</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!--置顶图标-->
+    <div th:replace="_fragments :: toolbar(1)"></div>
+
+    <!--底部footer-->
+    <footer th:replace="_fragments :: footer"></footer>
+
+    <!--引入js-->
+    <th:block th:replace="_fragments :: script"></th:block>
+</body>
+
+<script>
+// 显示QQ
+$('.My_qq').popup({
+    popup : $('.My_qq_qr'),
+    position: 'bottom center'
+});
+
+// 显示github
+$('.My_github').popup();
+
+$('#menu-toggle').click(function (){
+    $(".m-item").toggleClass("m-mobile-hide") // 有这个"m-mobile-hide"类就加上这个类否则就删去这个类
+});
+</script>
+
+</html>

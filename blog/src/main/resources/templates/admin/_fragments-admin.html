@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">标题</title>
+    <link rel="stylesheet" href="../../static/lib/Semantic-UI-2.5.0/dist/semantic.min.css" type="text/css" th:href="@{/lib/Semantic-UI-2.5.0/dist/semantic.min.css}">
+    <link rel="stylesheet" href="../../static/lib/markdown/css/editormd.min.css" th:href="@{/lib/markdown/css/editormd.min.css}">
+    <link rel="stylesheet" href="../../static/css/me.css" type="text/css" th:href="@{/css/me.css}">
+</head>
+
+<body>
+
+<!--导航-->
+<nav th:fragment="nav(n)" id="my-nav" style="opacity: 1; !important;">
+    <div class="ui container">
+        <div class="ui inverted secondary menu stackable">
+            <h1 class="ui blue header item">后台管理</h1>
+            <a href="#" th:href="@{/admin/blogs/manage}" class="item m-item m-mobile-hide" th:classappend="${n == 1} ? 'active' : '' "><i class="folder open outline icon"></i>文章管理</a>
+            <a href="#" th:href="@{/admin/blogs/input}"  class="item m-item m-mobile-hide" th:classappend="${n == 2} ? 'active' : '' "><i class="file alternate outline icon"></i>文章发布</a>
+            <a href="#" th:href="@{/admin/types}" class="item m-item m-mobile-hide" th:classappend="${n == 3} ? 'active' : '' "><i class="clone outline icon"></i>分类管理</a>
+            <a href="#" th:href="@{/admin/tags}"  class="item m-item m-mobile-hide" th:classappend="${n == 4} ? 'active' : '' "><i class="clone outline icon"></i>标签管理</a>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="item">
+                    <div class="ui dropdown item">
+                        <div class="text">
+                            <img class="ui avatar image" src="../../static/img/xiu.jpg" alt="" th:src="@{/img/xiu.jpg}">
+                            锈渎
+                        </div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="menu-toggle" class="ui menu black button icon m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </button>
+</nav>
+
+<!--置顶图标, js实现在footer_time.js文件里-->
+<div th:fragment="toolbar" id="toolbar" class="m-padded-tb-large m-fixed m-right-bottom toTop-button">
+    <div class="ui teal icon button"><i class="chevron up icon"></i> </div>
+</div>
+
+<!--底部footer-->
+<footer th:fragment="footer" class="ui inverted vertical segment  m-padded-tb m-opacity m-margin-top-big">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="five wide column">
+                <h4 class="ui inverted header m-opacity-small">联系我</h4>
+                <div class="ui inverted link list">
+                    <div class="item">QQ: <span >844506672</span> </div>
+                </div>
+            </div>
+            <div class="six wide column">
+                <h4 class="ui inverted header m-opacity-small">最新博客</h4>
+                <div id="newBlog-container">
+                    <div class="ui inverted link list" th:fragment="newBlogList">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item" th:each="blog : ${newBlogs}" th:text="${blog.title}">这是一篇博客</a>
+                    </div>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header m-opacity-small">小栈信息</h4>
+                <div id="message-container">
+                    <div class="ui inverted link list" th:fragment="message">
+                        <div class="item">
+                            文章总数: <div class="ui orange header m-inline-block" th:text="${blogCount}">&nbsp;200&nbsp;</div> 篇
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="ui inverted section divider"></div>
+        <div class="ui orange header m-text-thin m-text-spaced m-opacity-small">
+            我的小栈已营业:
+            <span id="run_time"></span>
+        </div>
+
+    </div>
+</footer>
+
+
+<!--引入js类-->
+<th:block th:fragment="script">
+    <script src="../../static/lib/jquery-3.0.0/jquery-3.0.0.min.js" th:src="@{/lib/jquery-3.0.0/jquery-3.0.0.min.js}"></script>
+    <script src="../../static/lib/Semantic-UI-2.5.0/dist/semantic.min.js" th:src="@{/lib/Semantic-UI-2.5.0/dist/semantic.min.js}"></script>
+    <script src="../../static/lib/jquery-scrollTo/jquery.scrollTo.min.js" th:src="@{/lib/jquery-scrollTo/jquery.scrollTo.min.js}"></script>
+    <script src="../../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+    <script src="../../static/lib/markdown/editormd.min.js" th:src="@{/lib/markdown/editormd.min.js}"></script>
+    <script src="../../static/js/footer_time.js" th:src="@{/js/footer_time.js}"></script>
+
+    <script>
+        $('#newBlog-container').load(/*[[@{/footer/newBlog}]]*/"/footer/newBlog");
+        $('#message-container').load(/*[[@{/footer/message}]]*/"/footer/message");
+    </script>
+</th:block>
+</body>
+<script>
+
+</script>
+
+</html>

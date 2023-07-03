@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>错误</title>
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="_fragments :: nav(0)" ></nav>
+<div id="main" class="m-margin-top-big">
+    <div class="m-container-small m-padded-tb-massive">
+        <div class="ui error message m-padded-tb-huge" >
+            <div class="ui container">
+                <h2>错误</h2>
+                <p>对不起，服务异常，请联系管理员</p>
+            </div>
+        </div>
+    </div>
+    <div class="m-margin-top-max" align="center">
+        <a href="#" th:href="@{/}">
+            <button type="button" class="ui teal button m-mobile-wide"><i class="home icon"></i>返回首页</button>
+        </a>
+    </div>
+
+    <!--在网页源代码打印错误（springboot官网给出处理方式）-->
+    <div>
+        <div th:utext="'&lt;!--'" th:remove="tag"></div>
+        <div th:utext="'Failed Request URL : ' + ${url}" th:remove="tag"></div>
+        <div th:utext="'Exception message : ' + ${exception.message}" th:remove="tag"></div>
+        <ul th:remove="tag">
+            <li th:each="st : ${exception.stackTrace}" th:remove="tag"><span th:utext="${st}" th:remove="tag"></span></li>
+        </ul>
+        <div th:utext="'--&gt;'" th:remove="tag"></div>
+    </div>
+
+</div>
+
+
+<!--底部footer-->
+<footer th:replace="_fragments :: footer"></footer>
+
+<!--引入js-->
+<th:block th:replace="_fragments :: script"></th:block>
+</body>
+</html>
